@@ -25,6 +25,9 @@ Type `pm:` before a rough prompt and the skill rewrites it, shows you the rewrit
 | `pm again` / `pm undo` | A fresh rewrite, or an answer to your original draft as typed |
 | `pm help` | The command list |
 
+> [!TIP]
+> Forgot a command? Type `pm help` to see the full list with examples.
+
 Typing is case-insensitive. If key details are missing (numbers, an attached file, a vague goal), it asks up to three quick questions first, and **go** accepts its suggestions. `pm only:`, `pm pick:` and the `ep` commands never ask: they use `[placeholders]` instead.
 
 ### Examples
@@ -45,6 +48,10 @@ pm critique: make it better
 - **study:** your level, topic and goal, time available, teaching from scratch with simple examples, practice questions, a check of understanding.
 - **research:** the exact question, scope and time frame, depth, sources, facts kept separate from guesses, uncertainty stated.
 
+<br>
+
+---
+
 ## Claude edition
 
 ### Install (Claude chat on the web, desktop or mobile)
@@ -58,18 +65,32 @@ For clickable buttons after a `pm:` rewrite, turn on visuals or interactive cont
 
 ### Install (Claude Code)
 
-Claude Code reads skills from `~/.claude/skills`. Download the zip, then run this from the folder it's in (Mac or Linux):
+Nothing extra to do if you signed in to Claude Code with your Claude account: the skill you uploaded above syncs to Claude Code automatically, in the desktop app and in the terminal. Start a new session and type `pm help`, or run it as `/prompt-master`. In the terminal there are no buttons, so type `pm again`, `pm why` or `pm undo`.
+
+If you sign in with an API key instead, the upload doesn't sync. Install it by hand: download the zip, then run this from the folder it's in (Mac or Linux):
 
 ```bash
 mkdir -p ~/.claude/skills && unzip prompt-master-claude.zip -d ~/.claude/skills
 ```
 
-That puts the skill at `~/.claude/skills/prompt-master/SKILL.md`, so it works in every project. To use it in one project only, unzip it into that project's `.claude/skills` folder instead. Start a new session and type `pm help`. In the terminal there are no buttons, so type `pm again`, `pm why` or `pm undo`.
+### Models it recommends
+
+The picker scores how hard, broad, risky and vague the task is, and only recommends Opus or max effort when the score earns it:
+
+| Task | Recommended |
+| --- | --- |
+| Lookups, formatting, simple questions | Haiku · low |
+| Small clear edits and answers | Sonnet · low |
+| Routine work | Sonnet · medium |
+| Hard debugging, multi-file work, design | Opus · high |
+| Deep architecture, security, subtle problems | Opus · max |
+
+A mechanical change to one file or item, such as a rename or a typo fix, always gets Haiku · low.
 
 ### Good to know
 
 - **Buttons:** after a `pm:` answer you get **Rewrite again**, **Why?** and **Undo** buttons. In some versions a click only fills the message box, so press Enter to send. They send `pm again`, `pm why` and `pm undo`, which you can also type.
-- **Recommendations are advice.** Chat can't switch models for you. Pick the model in the selector, and use the extended thinking toggle for medium effort and above. The picker recommends Haiku, Sonnet or Opus with an effort level.
+- **Recommendations are advice.** Chat can't switch models for you. Pick the model in the selector, and use the extended thinking toggle for medium effort and above.
 - **Plan:** `ep:` is tuned for Pro and Max plans. If you say you're on Free, it never recommends Opus. On pay-per-token API, it leans cheaper when the stakes are low.
 - **Privacy:** passwords, API keys and card or ID numbers in a draft are replaced with `[redacted]` in the rewrite.
 - **Language:** the rewrite uses the same language as your draft.
@@ -78,6 +99,10 @@ That puts the skill at `~/.claude/skills/prompt-master/SKILL.md`, so it works in
 ### Customize
 
 Everything lives in one file, `claude/prompt-master/SKILL.md`. To change which model it recommends, edit the table in section 6. To add a preset, add a row to the table in section 3. Re-zip (and replace `claude/prompt-master-claude.zip`) and upload again after any change.
+
+<br>
+
+---
 
 ## ChatGPT edition
 
