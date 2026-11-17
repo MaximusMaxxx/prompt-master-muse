@@ -1,5 +1,6 @@
 {
   "name": "prompt-master",
+  "version": "1.0.0",
   "description": "Rewrites rough prompts into clear ones and recommends which model and effort level to use for a task.",
   "author": {
     "name": "Nishkarsh Shah"
