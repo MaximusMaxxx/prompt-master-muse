@@ -5,5 +5,9 @@
   "author": {
     "name": "Nishkarsh Shah"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "homepage": "https://github.com/nishkarsh-shah/prompt-master",
+  "repository": "https://github.com/nishkarsh-shah/prompt-master",
+  "privacyPolicyUrl": "https://github.com/nishkarsh-shah/prompt-master/blob/main/claude/plugin/PRIVACY.md",
+  "supportUrl": "https://github.com/nishkarsh-shah/prompt-master/issues"
 }
