@@ -17,7 +17,7 @@ Type `pm:` before a rough prompt and the skill rewrites it, shows you the rewrit
 | You use | Do this | Details |
 | --- | --- | --- |
 | Claude chat (web, desktop, mobile) | Upload the zip in **Settings → Skills** | [Install](#install-claude-chat) |
-| Claude Code | Nothing, if you signed in with your Claude account and uploaded the skill. Or link the repo to stay up to date | [Install](#install-claude-code) |
+| Claude Code | Upload it in Claude chat and it syncs here, or install it from the terminal | [Install](#install-claude-code) |
 | ChatGPT and ChatGPT Work | Upload the zip in **Skills → Create** | [Install](#install-chatgpt-and-chatgpt-work) |
 | Codex | Run `$skill-installer`, or link the repo to stay up to date | [Install](#install-codex) |
 
@@ -63,6 +63,8 @@ pm critique: make it better
 
 ## Claude edition
 
+<a href="claude/prompt-master-claude.zip"><img src="assets/claude-edition.svg" alt="For Claude chat and Claude Code. Download the Claude zip." width="100%"></a>
+
 ### Install (Claude chat)
 
 Works on the web, desktop and mobile apps.
@@ -71,19 +73,26 @@ Works on the web, desktop and mobile apps.
 2. In Claude, open **Settings → Capabilities** and turn on **Code execution and file creation**. On Team and Enterprise plans, an admin may need to allow skills first.
 3. Under **Skills**, choose **Upload skill**, pick the zip, and make sure its toggle is on.
 
-**Check it works:** start a new chat and type `pm help`. An existing chat keeps the instructions it already loaded.
+> [!TIP]
+> **Check it works:** start a new chat and type `pm help`. An existing chat keeps the instructions it already loaded.
 
 **Update:** an uploaded skill doesn't pull changes from GitHub. Download the new zip and upload it again.
 
 For clickable buttons after a `pm:` rewrite, turn on visuals or interactive content in the same settings.
 
+<br>
+
 ### Install (Claude Code)
 
-If you use Claude Code with your Claude account, the skill you uploaded above syncs to it automatically, in the desktop app and in the terminal. There is nothing else to install.
+Pick one of two routes:
 
-**Check it works:** start a new session and type `pm help`, or run it as `/prompt-master`. In the terminal there are no buttons, so type `pm again`, `pm why` or `pm undo`.
+- **Sync from Claude chat:** upload the skill in Claude chat, as above. If you sign in to Claude Code with the same Claude account, it appears there automatically, in the desktop app and in the terminal.
+- **Install it locally:** use one of the options below. This works without uploading anything, and with an API-key login.
 
-**Update:** upload the new zip in Claude chat, as above.
+> [!TIP]
+> **Check it works:** start a new session and type `pm help`, or run it as `/prompt-master`. In the terminal there are no buttons, so type `pm again`, `pm why` or `pm undo`.
+
+**Update:** if it syncs from Claude chat, upload the new zip there. If you installed it locally, use the update step of the option you chose.
 
 > [!NOTE]
 > Pick one route. If you also link or copy the skill into `~/.claude/skills` (below), Prompt Master can show up twice. To switch routes, remove the old copy first: `rm -rf ~/.claude/skills/prompt-master`
@@ -136,6 +145,8 @@ An upload in Claude chat doesn't sync to an API-key login. Use "Stay up to date 
 
 </details>
 
+<br>
+
 ### Models it recommends
 
 The picker scores how hard, broad, risky and vague the task is, and only recommends Opus or max effort when the score earns it:
@@ -154,14 +165,19 @@ A mechanical change to one file or item, such as a rename or a typo fix, always 
 
 ## ChatGPT edition
 
+<a href="chatgpt/prompt-master-chatgpt.zip"><img src="assets/chatgpt-edition.svg" alt="For ChatGPT, ChatGPT Work and Codex. Download the ChatGPT zip." width="100%"></a>
+
 ### Install (ChatGPT and ChatGPT Work)
 
 1. Download [`prompt-master-chatgpt.zip`](chatgpt/prompt-master-chatgpt.zip): open the file on GitHub and click the download button.
 2. In ChatGPT, open **Skills**, choose **Create**, then **Upload from your computer**, and pick the zip. On workspace plans, an admin may need to allow skill uploads first.
 
-**Check it works:** start a new chat and type `pm help`.
+> [!TIP]
+> **Check it works:** start a new chat and type `pm help`.
 
 **Update:** an uploaded skill doesn't pull changes from GitHub. Download the new zip and upload it again.
+
+<br>
 
 ### Install (Codex)
 
@@ -173,7 +189,8 @@ $skill-installer install https://github.com/nishkarsh-shah/prompt-master/tree/ma
 
 This puts the skill in `~/.agents/skills/prompt-master`.
 
-**Check it works:** type `pm help`. Restart Codex if it doesn't respond.
+> [!TIP]
+> **Check it works:** type `pm help`. Restart Codex if it doesn't respond.
 
 **Update:** the installer copies the files, so delete `~/.agents/skills/prompt-master` and run the install command again.
 
@@ -214,6 +231,8 @@ Expand-Archive "$env:TEMP\prompt-master-chatgpt.zip" -DestinationPath "$HOME\.ag
 
 </details>
 
+<br>
+
 ### Models it recommends
 
 The picker names a model and an effort, plus a fallback if the first isn't in your selector. The names are recommendations, not proof that your plan has them.
@@ -240,7 +259,6 @@ For a light task that is risky or unclear, it steps up to the newer model in the
 - **Plan:** on a Free plan it never recommends a paid-only model. The Claude edition is tuned for Pro and Max, and on pay-per-token API it leans cheaper when the stakes are low.
 - **Privacy:** passwords, API keys and card or ID numbers in a draft are replaced with `[redacted]` in the rewrite.
 - **Language (Claude edition):** the rewrite uses the same language as your draft.
-- **Cost (Claude edition):** the skill's instructions load once per chat that uses it, under 3k tokens, plus a short description that is always present.
 
 ## Customize
 

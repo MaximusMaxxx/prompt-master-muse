@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="128" viewBox="0 0 1200 128" role="img" aria-label="ChatGPT edition: for ChatGPT, ChatGPT Work and Codex">
+  <rect x="0.5" y="0.5" width="1199" height="127" rx="18" fill="#16191c" stroke="rgba(243,242,234,0.12)"/>
+  <rect x="0" y="0" width="10" height="128" rx="5" fill="#5a96ff"/>
+  <circle cx="64" cy="64" r="9" fill="#5a96ff"/>
+  <text x="92" y="58" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="30" font-weight="700" fill="#f3f2ea">ChatGPT, ChatGPT Work and Codex</text>
+  <text x="92" y="92" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="21" fill="#a7aca8">One zip for all three</text>
+  <rect x="930" y="40" width="236" height="48" rx="24" fill="none" stroke="#5a96ff" stroke-width="2"/>
+  <text x="1048" y="71" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#5a96ff">Download the zip ↓</text>
+</svg>
