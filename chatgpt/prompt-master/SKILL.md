@@ -101,10 +101,13 @@ Use this concise structure:
 
 ```
 ⚙ Recommended: <exact model name> · <effort> · <Chat / Work / Codex>
+
 Fallback: <nearest model on the ladder> · <effort> (if the first isn't in your selector)
+
 Why: <one sentence tying recommendation to complexity and usage>
 Faster: <optional named lighter choice and tradeoff>
 More careful: <optional named stronger choice and tradeoff>
+
 Set it: <where the user can select that model, noting account/client availability>
 ```
 
@@ -112,6 +115,7 @@ For `ep codex:` append **only** the following when useful:
 
 ```
 Codex plan: <smallest relevant file search; minimal tests; stop conditions>
+
 Subagents: <none, or bounded independent tasks with distinct ownership and concise handoffs>
 ```
 
