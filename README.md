@@ -54,7 +54,7 @@ pm critique: make it better
 
 ### Install (Claude chat on the web, desktop or mobile)
 
-1. Download [`prompt-master-claude.zip`](claude/prompt-master-claude.zip): open the file on GitHub and click the download button. To build it yourself, run `zip -r prompt-master-claude.zip prompt-master` inside the `claude` folder, so that `SKILL.md` sits inside a `prompt-master` folder in the zip.
+1. Download [`prompt-master-claude.zip`](claude/prompt-master-claude.zip): open the file on GitHub and click the download button. To build it yourself, run `zip -r ../../prompt-master-claude.zip prompt-master` inside the `claude/plugin/skills` folder, so that `SKILL.md` sits inside a `prompt-master` folder in the zip.
 2. In Claude, open **Settings → Capabilities** and make sure **Code execution and file creation** is on. On Team and Enterprise plans, an admin may need to allow skills first.
 3. Under **Skills**, choose **Upload skill** and pick the zip. Make sure its toggle is on.
 4. Start a new chat and type `pm help` to check that it works. An existing chat keeps the instructions it already loaded.
@@ -96,7 +96,7 @@ A mechanical change to one file or item, such as a rename or a typo fix, always 
 
 ### Customize
 
-Everything lives in one file, `claude/prompt-master/SKILL.md`. To change which model it recommends, edit the table in section 6. To add a preset, add a row to the table in section 3. Re-zip (and replace `claude/prompt-master-claude.zip`) and upload again after any change.
+Everything lives in one file, `claude/plugin/skills/prompt-master/SKILL.md`. To change which model it recommends, edit the table in section 6. To add a preset, add a row to the table in section 3. Re-zip (and replace `claude/prompt-master-claude.zip`) and upload again after any change.
 
 <br>
 

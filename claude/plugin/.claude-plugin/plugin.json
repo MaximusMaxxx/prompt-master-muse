@@ -1,0 +1,8 @@
+{
+  "name": "prompt-master",
+  "description": "Rewrites rough prompts into clear ones and recommends which model and effort level to use for a task.",
+  "author": {
+    "name": "Nishkarsh Shah"
+  },
+  "license": "MIT"
+}
