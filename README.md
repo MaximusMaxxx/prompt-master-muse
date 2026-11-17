@@ -50,8 +50,6 @@ pm critique: make it better
 
 <br>
 
----
-
 ## Claude edition
 
 ### Install (Claude chat on the web, desktop or mobile)
@@ -101,8 +99,6 @@ A mechanical change to one file or item, such as a rename or a typo fix, always 
 Everything lives in one file, `claude/prompt-master/SKILL.md`. To change which model it recommends, edit the table in section 6. To add a preset, add a row to the table in section 3. Re-zip (and replace `claude/prompt-master-claude.zip`) and upload again after any change.
 
 <br>
-
----
 
 ## ChatGPT edition
 
