@@ -257,7 +257,7 @@ For a light task that is risky or unclear, it steps up to the newer model in the
 - **Buttons:** after a `pm:` answer you get **Rewrite again**, **Why?** and **Undo**. In Claude, some versions only fill the message box when you click, so press Enter to send. ChatGPT shows them where the app supports native action buttons. Where there are no buttons, such as the Claude Code terminal or Codex, type `pm again`, `pm why` or `pm undo`.
 - **Recommendations are advice.** The skill never switches models or starts subagents for you; `ep claude:` and `ep codex:` only suggest a plan. Pick the model yourself, and in Claude use the extended thinking toggle for medium effort and above.
 - **Plan:** on a Free plan it never recommends a paid-only model. The Claude edition is tuned for Pro and Max, and on pay-per-token API it leans cheaper when the stakes are low.
-- **Privacy:** passwords, API keys and card or ID numbers in a draft are replaced with `[redacted]` in the rewrite.
+- **Privacy:** Prompt Master doesn't collect, store or send any data. Passwords, API keys and card or ID numbers in a draft are replaced with `[redacted]` in the rewrite. See the [privacy policy](claude/plugin/PRIVACY.md).
 - **Language (Claude edition):** the rewrite uses the same language as your draft.
 
 ## Customize
