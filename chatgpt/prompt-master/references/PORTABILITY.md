@@ -23,7 +23,7 @@ Do not place multiple skills inside one upload archive. This package contains ex
 
 ## Explicit named-model recommendations
 
-The OpenAI edition now explicitly names model versions in `ep:`, `ep codex:`, and `pm pick:` instead of only a capability tier. ChatGPT Chat, Work, and Codex have distinct selectors: consult the `SKILL.md` model matrix, recommend only models plausible for the surface, and always state a named fallback and workspace-availability caveat. Recommendations never switch the selected model or guarantee reduced usage.
+The OpenAI edition now explicitly names model versions in `ep:`, `ep codex:`, and `pm pick:` instead of only a capability tier. ChatGPT Chat, Work, and Codex share one model ladder from GPT-5.6 Luna to GPT-6 Astra: consult the `SKILL.md` table, prefer 5.6 models unless the score earns 6.x, and always state a named fallback and workspace-availability caveat. Recommendations never switch the selected model or guarantee reduced usage.
 
 
 ## Claude feature parity restored

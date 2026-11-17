@@ -78,35 +78,30 @@ Score the *as-written* task for `ep:` or the *rewritten* prompt for `pm pick:` o
 - **K** consequence: 0 harmless, 1 small, 2 consequential but reversible, 3 security, money, legal, medical, or possible data loss.
 - **V** vagueness: 0 precise, 1 slight ambiguity, 2 interpretation needed, 3 unclear goal.
 
-`score = 2*R + S + K + V` (0–15). Override without exception: a mechanical change in a **single file or item** (rename, typo correction, formatting, lookup, rewording one line) **always uses the lightest available suitable named model at low effort, regardless of score**. For Claude this is Haiku · low; in ChatGPT/Codex, use the corresponding lightest available OpenAI model from the named model mappings. This model-routing override does not waive normal safety checks, user permission, or verification, but those do **not** change the model tier.
+`score = 2*R + S + K + V` (0–15). Override without exception: a mechanical change in a **single file or item** (rename, typo correction, formatting, lookup, rewording one line) **always uses the lightest available suitable named model at low effort, regardless of score**. For Claude this is Haiku · low; in ChatGPT/Codex this is **GPT-5.6 Luna · low**. This model-routing override does not waive normal safety checks, user permission, or verification, but those do **not** change the model tier.
 
-| Score | Capability tier | Reasoning effort | Typical use |
-| --- | --- | --- | --- |
-| 0–1 | Lightest available suitable model | Low / Instant | formatting, rename, lookup |
-| 2–4 | Fast general model | Low / Instant | clear small edits |
-| 5–7 | Balanced general/coding model | Medium | routine debugging or reasoning |
-| 8–11 | Strong reasoning/coding model | High | complex bugs, architecture |
-| 12–15 | Strongest available suitable model | High / Extra High if available | subtle high-stakes designs |
+| Score | Model · effort | Good for |
+| --- | --- | --- |
+| 0–1 | **GPT-5.6 Luna** · low | lookups, formatting, renames |
+| 2–4 | **GPT-5.6 Terra** · low | small clear edits and answers |
+| 5–7 | **GPT-5.6 Sol** · medium | routine work, the default |
+| 8–9 | **GPT-6 Sol** · high | hard debugging, multi-file work |
+| 10–11 | **GPT-6.1 Sol** · high | design, subtle trade-offs |
+| 12–15 | **GPT-6 Astra** · high (extra high if offered) | deep architecture, security, subtle high-stakes problems |
 
 ## Named model picker (required output)
 
-**Always name a concrete model first.** Do not answer with a capability tier alone. The named options below are recommendations, *not* proof of entitlement. Prefer models visible in the user's model selector; if their available models are unknown, give a named primary and a named fallback, clearly noting availability is workspace- and client-dependent. Never imply automatic model switching.
+**Always name a concrete model.** 6.x models use far more of the user's limits than 5.6, so recommend 6.x only when the score earns it. In the 0–7 rows, switch to the newer model of the same family only if risk (K) or vagueness (V) is 3: GPT-5.6 Luna → **GPT-6 Luna**, GPT-5.6 Terra → **GPT-6.1 Terra**, GPT-5.6 Sol → **GPT-6 Sol**.
 
-Determine product from explicit `ep codex`, references to coding in Codex, ChatGPT Work/browser actions, or ordinary ChatGPT conversation. If no product specified, use **ChatGPT Chat**. Avoid recommending API-only models as selectable ChatGPT models. Always include exact model family/version and effort, not just "mini", "fast", or "powerful".
+Faster and More careful are the neighbours on this ladder, lightest to strongest: GPT-5.6 Luna, GPT-6 Luna, GPT-5.6 Terra, GPT-6.1 Terra, GPT-5.6 Sol, GPT-6 Sol, GPT-6.1 Sol, GPT-6 Astra. Leave out a line when there is no neighbour.
 
-**ChatGPT Chat:** Model selection differs from Codex. Current examples: `GPT-6` (Instant / Medium / High / Extra High where offered), `GPT-5.6 Sol` (Instant / Medium / High where offered), and `GPT-6 Pro (Astra)` only where Pro access is explicitly shown. Do not suggest `GPT-5.6 Luna` or `GPT-5.6 Terra` as manually selectable in ordinary Chat. Mapping: scores 0–4 → **GPT-6 · Instant**; 5–7 → **GPT-6 · Medium**; 8–11 → **GPT-6 · High**; 12–15 → **GPT-6 · Extra High**, or **GPT-6 Pro (Astra)** only if user has access and the stakes justify it. Fallback if GPT-6 is absent: **GPT-5.6 Sol** with corresponding available effort. For Edu, explicitly caveat workspace admin and rollout access. If the user says they have a **Free** plan, do not recommend unavailable paid-only or premium models; choose the strongest eligible model/effort actually displayed within Free access and clearly explain the cap. For **pay-per-token API** use, prefer the next cheaper suitable named model/effort when consequence is low, unless that compromises task requirements or quality; do not invent comparative costs. If the plan or selectable models are unknown, label options as conditional rather than assuming access.
-
-**ChatGPT Work:** Where available, choose **GPT-5.6 Luna** (0–1), **GPT-5.6 Terra** (2–7), **GPT-5.6 Sol** (8–11), and **GPT-6 Astra** (12–15, only when displayed). Recommended effort: low, low/medium, high, high respectively. If Work shows different named models, select the closest *visible* one and say that availability may vary. Task execution tools and permissions are independent of model choice.
-
-**Codex:** Where available, choose **GPT-5.6 Luna** (0–1), **GPT-5.6 Terra** (2–7), **GPT-5.6 Sol** (8–11), and **GPT-6 Astra** (12–15 only where offered). Recommended reasoning: low, low/medium, medium/high, high respectively. If the menu does not include a recommended model, fall back in order to a displayed member of **GPT-5.6 Terra → GPT-5.6 Sol** for normal coding, or **GPT-5.6 Luna** for trivial edits. Do not suggest low effort for security-critical work purely to save usage, **except** that the deterministic single-item mechanical-change override above always applies to model selection; safety and verification remain mandatory. Do not invent precise quotas, relative rates, or a claim that any model is available to Edu.
-
-Check current official documentation or the user's displayed model list when access and names are material, and avoid silently relying on stale catalog assumptions. On a user-provided model menu, map the same difficulty tiers to those actual options rather than repeating unavailable names. Output both **primary** and **fallback** as named models with effort. A model recommendation does not execute a switch.
+Use the same ladder in ChatGPT Chat, Work and Codex; label which one from `ep codex`, Codex coding work, Work/browser actions, or otherwise Chat. Effort names vary by selector: where it shows Instant, that is low. The names are recommendations, not proof of access: if a model isn't in the user's selector, name the nearest one it shows, same family first. Free plan: never recommend a paid-only model; use the strongest one shown and say it's capped. Pay-per-token API: go one rung cheaper when the stakes are low. For Edu, note that admins control rollout. Never invent quotas, prices or savings, and never imply the model switches automatically.
 
 Use this concise structure:
 
 ```
 ⚙ Recommended: <exact model name> · <effort> · <Chat / Work / Codex>
-Fallback: <exact alternative model name> · <effort> (if primary is unavailable)
+Fallback: <nearest model on the ladder> · <effort> (if the first isn't in your selector)
 Why: <one sentence tying recommendation to complexity and usage>
 Faster: <optional named lighter choice and tradeoff>
 More careful: <optional named stronger choice and tradeoff>

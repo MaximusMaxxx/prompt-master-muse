@@ -4,7 +4,7 @@ A skill that turns a rough, hastily typed prompt into a clear one, and recommend
 
 | Edition | For | Download | Folder |
 | --- | --- | --- | --- |
-| Claude | Claude chat on the web, desktop and mobile | [`prompt-master-claude.zip`](claude/prompt-master-claude.zip) | [`claude/`](claude) |
+| Claude | Claude chat on the web, desktop and mobile, and Claude Code | [`prompt-master-claude.zip`](claude/prompt-master-claude.zip) | [`claude/`](claude) |
 | ChatGPT | ChatGPT, ChatGPT Work and Codex | [`prompt-master-chatgpt.zip`](chatgpt/prompt-master-chatgpt.zip) | [`chatgpt/`](chatgpt) |
 
 Type `pm:` before a rough prompt and the skill rewrites it, shows you the rewrite, and answers it. Type `ep:` before a task and it recommends a model and effort level without doing the task.
@@ -17,6 +17,7 @@ Type `pm:` before a rough prompt and the skill rewrites it, shows you the rewrit
 | `pm only: <rough prompt>` | Only the rewritten prompt, in a copy-ready block |
 | `pm pick: <rough prompt>` | The rewrite, then a model and effort recommendation for it (no answer) |
 | `ep: <task>` | A model and effort recommendation for the task as you wrote it |
+| `ep claude: <task>` | Claude edition only: the same, plus a short Claude Code plan, plan mode and subagent advice |
 | `ep codex: <task>` | ChatGPT edition only: the same, plus a short Codex plan and subagent advice |
 | `pm code:` `pm email:` `pm study:` `pm research:` | A preset that shapes the rewrite for that kind of task. Combine them: `pm only email:`, `pm pick code:` |
 | `pm critique: <rough prompt>` | A score out of 10, what's missing, and the one fix to make first (no rewrite) |
@@ -24,7 +25,7 @@ Type `pm:` before a rough prompt and the skill rewrites it, shows you the rewrit
 | `pm again` / `pm undo` | A fresh rewrite, or an answer to your original draft as typed |
 | `pm help` | The command list |
 
-Typing is case-insensitive. If key details are missing (numbers, an attached file, a vague goal), it asks up to three quick questions first, and **go** accepts its suggestions. `pm only:`, `pm pick:` and `ep:` never ask: they use `[placeholders]` instead.
+Typing is case-insensitive. If key details are missing (numbers, an attached file, a vague goal), it asks up to three quick questions first, and **go** accepts its suggestions. `pm only:`, `pm pick:` and the `ep` commands never ask: they use `[placeholders]` instead.
 
 ### Examples
 
@@ -55,6 +56,16 @@ pm critique: make it better
 
 For clickable buttons after a `pm:` rewrite, turn on visuals or interactive content in the same settings.
 
+### Install (Claude Code)
+
+Claude Code reads skills from `~/.claude/skills`. Download the zip, then run this from the folder it's in (Mac or Linux):
+
+```bash
+mkdir -p ~/.claude/skills && unzip prompt-master-claude.zip -d ~/.claude/skills
+```
+
+That puts the skill at `~/.claude/skills/prompt-master/SKILL.md`, so it works in every project. To use it in one project only, unzip it into that project's `.claude/skills` folder instead. Start a new session and type `pm help`. In the terminal there are no buttons, so type `pm again`, `pm why` or `pm undo`.
+
 ### Good to know
 
 - **Buttons:** after a `pm:` answer you get **Rewrite again**, **Why?** and **Undo** buttons. In some versions a click only fills the message box, so press Enter to send. They send `pm again`, `pm why` and `pm undo`, which you can also type.
@@ -62,7 +73,7 @@ For clickable buttons after a `pm:` rewrite, turn on visuals or interactive cont
 - **Plan:** `ep:` is tuned for Pro and Max plans. If you say you're on Free, it never recommends Opus. On pay-per-token API, it leans cheaper when the stakes are low.
 - **Privacy:** passwords, API keys and card or ID numbers in a draft are replaced with `[redacted]` in the rewrite.
 - **Language:** the rewrite uses the same language as your draft.
-- **Cost:** the skill's instructions load once per chat that uses it, about 2.5k tokens, plus a short description that is always present.
+- **Cost:** the skill's instructions load once per chat that uses it, under 3k tokens, plus a short description that is always present.
 
 ### Customize
 
@@ -75,25 +86,41 @@ Everything lives in one file, `claude/prompt-master/SKILL.md`. To change which m
 **ChatGPT and ChatGPT Work**
 
 1. Download [`prompt-master-chatgpt.zip`](chatgpt/prompt-master-chatgpt.zip): open the file on GitHub and click the download button.
-2. Open the skills screen in ChatGPT (typically `/skills`; the menu varies by plan and version) and upload the zip. Upload this zip on its own: an archive must hold a single skill.
+2. In ChatGPT, open **Skills**, choose **Create**, then **Upload from your computer**, and pick the zip. On workspace plans, an admin may need to allow skill uploads first.
 3. Start a new chat and type `pm help` to check that it works.
 
 **Codex**
 
-Codex needs the skill folder copied into `~/.agents/skills/` by hand. This is the tested method; I haven't verified another one. After downloading the zip, run this from the folder it's in (Mac or Linux):
+The easiest way is Codex's built-in skill installer. In Codex, type:
+
+```text
+$skill-installer install https://github.com/nishkarsh-shah/prompt-master/tree/main/chatgpt/prompt-master
+```
+
+Or copy it in by hand: download the zip, then run this from the folder it's in (Mac or Linux). It puts the skill at `~/.agents/skills/prompt-master/SKILL.md`; for one project only, unzip it into that project's `.agents/skills` folder instead.
 
 ```bash
 mkdir -p ~/.agents/skills && unzip prompt-master-chatgpt.zip -d ~/.agents/skills
 ```
 
-That puts the skill at `~/.agents/skills/prompt-master/SKILL.md`. Restart Codex if it was already open, then type `pm help`.
+Then type `pm help` to check. Restart Codex if it doesn't respond.
 
 ### Models it recommends
 
 The picker names a model and an effort, plus a fallback if the first isn't in your selector. The names are recommendations, not proof that your plan has them.
 
-- **ChatGPT Chat:** GPT-6 (Instant, Medium, High or Extra High), GPT-5.6 Sol as the fallback, and GPT-6 Pro (Astra) only if you have it.
-- **ChatGPT Work and Codex:** GPT-5.6 Luna for the lightest tasks, GPT-5.6 Terra for routine work, GPT-5.6 Sol for hard work, and GPT-6 Astra for the hardest, where offered.
+The same picks apply in ChatGPT, Work and Codex. 6.x models use much more of your limits, so it stays on 5.6 until a task needs more:
+
+| Task | Recommended |
+| --- | --- |
+| Lookups, formatting, renames | GPT-5.6 Luna · low |
+| Small clear edits and answers | GPT-5.6 Terra · low |
+| Routine work | GPT-5.6 Sol · medium |
+| Hard debugging, multi-file work | GPT-6 Sol · high |
+| Design, subtle trade-offs | GPT-6.1 Sol · high |
+| Deep architecture, security | GPT-6 Astra · high |
+
+For a light task that is risky or unclear, it steps up to the newer model in the same family: GPT-6 Luna, GPT-6.1 Terra or GPT-6 Sol.
 
 ### Good to know
 
