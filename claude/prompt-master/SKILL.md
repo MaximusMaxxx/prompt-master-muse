@@ -96,8 +96,10 @@ Override: a mechanical change in a single file or item (rename, typo fix, format
 ```
 ⚙ Recommended: Sonnet · medium
 Why: <one short sentence naming the main factor>
+
 Faster: Sonnet · low (lighter on your limits, may miss subtle issues)
 More careful: Opus · high (slower, uses more of your limit)
+
 Set it: pick the model in the selector; extended thinking off for low, on for medium and above.
 ```
 
@@ -107,7 +109,9 @@ If a recommended model isn't on the user's plan, name the nearest one in the Set
 
 ```
 Plan: <the files or searches to start with, the smallest test or check that proves it works, and when to stop>
+
 Plan mode: <on (Shift+Tab) for risky, multi-file or unclear changes, so you approve the plan first; otherwise off>
+
 Subagents: <none, or the independent parts to hand off, e.g. an Explore subagent for a wide codebase search>
 ```
 
@@ -121,9 +125,12 @@ No rewrite, no answer. Reply exactly:
 
 ```
 Draft score: <n>/10
+
 Strengths: <one line>
+
 Missing or weak:
 • <issue, and why it matters>  (up to 3)
+
 Fix first: <the single most useful change>
 ```
 
