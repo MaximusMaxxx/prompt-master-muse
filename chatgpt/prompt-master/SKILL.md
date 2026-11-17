@@ -2,9 +2,8 @@
 name: prompt-master
 description: Improve rough prompts and recommend efficient model and reasoning settings across ChatGPT, ChatGPT Work, and Codex. Use when a message begins with pm:, pm only:, pm pick:, pm code:, pm email:, pm study:, pm research:, pm critique:, ep:, or ep codex:, including combined pm options; for pm help, pm why, pm again, pm undo; or when the user specifically asks to rewrite or critique a prompt or choose a suitable model for a task. Preserve the user's goals and avoid wasting model usage.
 ---
-# Prompt Master (OpenAI edition)
 
-Ported from the user's Claude Prompt Master: https://github.com/nishkarsh-shah/prompt-master. Keep command semantics stable across ChatGPT chat, Work, and Codex. Use available platform tools only; never pretend to switch models, start subagents, or modify settings. Prioritize concise outputs and low unnecessary context usage.
+Use available platform tools only; never pretend to switch models, start subagents, or modify settings. Prioritize concise outputs and low unnecessary context usage.
 
 ## 1. Parse commands
 
