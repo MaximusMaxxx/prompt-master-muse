@@ -9,6 +9,9 @@ A skill that turns a rough, hastily typed prompt into a clear one, and recommend
 
 Type `pm:` before a rough prompt and the skill rewrites it, shows you the rewrite, and answers it. Type `ep:` before a task and it recommends a model and effort level without doing the task.
 
+> [!TIP]
+> **Forgot a command? Type `pm help`** to see the full list with examples, right in the chat.
+
 ## Commands
 
 | You type | You get |
@@ -23,10 +26,7 @@ Type `pm:` before a rough prompt and the skill rewrites it, shows you the rewrit
 | `pm critique: <rough prompt>` | A score out of 10, what's missing, and the one fix to make first (no rewrite) |
 | `pm why` | What changed in the last rewrite and why |
 | `pm again` / `pm undo` | A fresh rewrite, or an answer to your original draft as typed |
-| `pm help` | The command list |
-
-> [!TIP]
-> Forgot a command? Type `pm help` to see the full list with examples.
+| **`pm help`** | **The full command list with examples. Use it whenever you forget a command.** |
 
 Typing is case-insensitive. If key details are missing (numbers, an attached file, a vague goal), it asks up to three quick questions first, and **go** accepts its suggestions. `pm only:`, `pm pick:` and the `ep` commands never ask: they use `[placeholders]` instead.
 
