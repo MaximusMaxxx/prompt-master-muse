@@ -56,7 +56,7 @@ Presets (every relevant dimension must appear as instructions or placeholders):
 
 ## 4. Output conventions
 
-- **`pm:`** Start with `✨ Prompt Master:` and put the rewritten prompt in a blockquote. Add a divider, then genuinely answer/execute it using available tools. At the end provide **working native follow-up controls** when the host supports them, following section 6 and `references/INTERACTIVE_CONTROLS.md`. Use plain-text command suggestions only in clients without actionable controls. Never output Claude `show_widget`, HTML scripts, or pretend plain text is clickable. Do not execute irreversible external actions merely because a rewritten prompt describes them; follow normal confirmation and tool permissions.
+- **`pm:`** Start with `✨ Prompt Master:` and put the rewritten prompt in a blockquote. Add a divider, then genuinely answer/execute it using available tools. At the end provide **working native follow-up controls** when the host supports them, following section 6 and `references/INTERACTIVE_CONTROLS.md`. Use plain-text command suggestions only in clients without actionable controls. Never output HTML scripts or pretend plain text is clickable. Do not execute irreversible external actions merely because a rewritten prompt describes them; follow normal confirmation and tool permissions.
 - **`pm only:`** Output the rewrite in a fenced code block (longer fence if inner backticks require it). In a host with native actions, also render compact Copy, Refine, and Answer buttons; avoid adding explanatory prose.
 - **`pm pick:`** Output the rewrite in a fenced code block, followed by the recommendation from section 5; never answer the underlying task unless the user clicks a clearly labeled Answer/Run control.
 - **`ep:`** Output only section 5 recommendation; never answer the task.
@@ -77,7 +77,7 @@ Score the *as-written* task for `ep:` or the *rewritten* prompt for `pm pick:` o
 - **K** consequence: 0 harmless, 1 small, 2 consequential but reversible, 3 security, money, legal, medical, or possible data loss.
 - **V** vagueness: 0 precise, 1 slight ambiguity, 2 interpretation needed, 3 unclear goal.
 
-`score = 2*R + S + K + V` (0–15). Override without exception: a mechanical change in a **single file or item** (rename, typo correction, formatting, lookup, rewording one line) **always uses the lightest available suitable named model at low effort, regardless of score**. For Claude this is Haiku · low; in ChatGPT/Codex this is **GPT-5.6 Luna · low**. This model-routing override does not waive normal safety checks, user permission, or verification, but those do **not** change the model tier.
+`score = 2*R + S + K + V` (0–15). Override without exception: a mechanical change in a **single file or item** (rename, typo correction, formatting, lookup, rewording one line) **always uses the lightest available suitable named model at low effort, regardless of score**. This is **GPT-5.6 Luna · low**. This model-routing override does not waive normal safety checks, user permission, or verification, but those do **not** change the model tier.
 
 | Score | Model · effort | Good for |
 | --- | --- | --- |
@@ -134,14 +134,10 @@ Default to **no subagents** for mechanical/single-file changes. Use subagents on
 | `pm why` / `pm again` | Show relevant next actions using the most recent original draft when available. |
 | `pm help` | Show 2–3 useful example buttons only if they launch meaningful actual example requests. |
 
-For ChatGPT clients supporting DIL native controls, implement with `<button onClick={() => GenUI.issueNewTurn("pm again")}>Try again</button>` and its command equivalents; use `GenUI.copy(rewrittenPrompt)` for **Copy prompt** where `rewrittenPrompt` is the literal rewritten prompt shown in that response, not placeholder text. For actions that need the draft, embed the actual draft in the `GenUI.issueNewTurn` argument; the button must work from one click. Keep handlers synchronous and only use supported native callbacks. Do not use Markdown faux-buttons, JS/HTML scripts, Claude widgets, or inert buttons. Inspect `references/INTERACTIVE_CONTROLS.md` for implementation examples, limitations, and fallback rules.
+For ChatGPT clients supporting DIL native controls, implement with `<button onClick={() => GenUI.issueNewTurn("pm again")}>Try again</button>` and its command equivalents; use `GenUI.copy(rewrittenPrompt)` for **Copy prompt** where `rewrittenPrompt` is the literal rewritten prompt shown in that response, not placeholder text. For actions that need the draft, embed the actual draft in the `GenUI.issueNewTurn` argument; the button must work from one click. Keep handlers synchronous and only use supported native callbacks. Do not use Markdown faux-buttons, JS/HTML scripts, or inert buttons. Inspect `references/INTERACTIVE_CONTROLS.md` for implementation examples, limitations, and fallback rules.
 
 For Codex CLI/desktop or ChatGPT clients that do not support native interactive controls, **do not promise buttons**: give short copyable commands instead. Skills cannot alter the host renderer or force action support. Avoid submitting destructive or external actions directly from a follow-up button without normal authorization or confirmation. A button's label must accurately describe the action it performs.
 
 ## 7. Follow-up behavior and clarification continuation
 
 Keep the last original draft, command mode, clarification questions, suggested defaults, and supplied answers **within this conversation only**. After a clarification request, recognize a direct answer and `go`/`defaults` as continuations, then return to the original `pm:` or preset workflow with the updated information; never require the user to retype the prompt. `go` means accept all suggested defaults. Reply aliases `again`/`rewrite again` mean `pm again`, `undo`/`original` mean `pm undo`, and `why` after a rewrite means `pm why`. `pm again` must preserve previously answered clarification questions; `pm undo` must answer the original as typed (without a rewrite). For `pm why`, `pm again`, and `pm undo`, use only the most recent original draft and mode *visible in this conversation*. Do not refer to unseen chats. If there is no earlier draft, use the exact empty-history messages from section 1. All other messages are normal new messages; Prompt Master does not capture everything as a command.
-
-## 8. Sources and portability
-
-This edition preserves the source skill's `pm`, `ep`, presets, critique and follow-up semantics, while replacing Claude-specific model names and UI calls. See `references/PORTABILITY.md` when asked about installation, cross-platform differences, or implementation decisions. Do not load it for normal commands.
