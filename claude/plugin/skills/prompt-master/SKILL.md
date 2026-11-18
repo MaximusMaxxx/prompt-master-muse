@@ -87,9 +87,10 @@ Score the task (for `pm pick:`, the **rewritten** prompt; for `ep:` and `ep clau
 | --- | --- | --- |
 | 0-1 | Haiku · low | lookups, formatting, simple questions |
 | 2-4 | Sonnet · low | small clear edits and answers |
-| 5-7 | Sonnet · medium | routine work, the default |
-| 8-11 | Opus · high | hard debugging, multi-file work, design |
-| 12-15 | Opus · max | deep architecture, security, subtle problems |
+| 5-6 | Sonnet · medium | routine work, the default |
+| 7-9 | Opus · medium | multi-file work with a clear goal |
+| 10-12 | Opus · high | hard debugging, design, subtle trade-offs |
+| 13-15 | Opus · max | deep architecture, security, subtle problems |
 
 Override: a mechanical change in a single file or item (rename, typo fix, formatting, a lookup, rewording one line) is always Haiku · low, whatever the total. Tuned for a Pro or Max plan: Opus and max effort only when the score earns them. If the user states another plan, adapt: on Free never recommend Opus (cap at Sonnet · medium); on pay-per-token API lean one row cheaper when the stakes are low. Reply in this shape (for `pm pick:`, put the rewrite alone in a code block first, with no title and no `>` quote); the row above is Faster and the row below is More careful, and the first and last rows leave out the missing line:
 
@@ -98,7 +99,7 @@ Override: a mechanical change in a single file or item (rename, typo fix, format
 Why: <one short sentence naming the main factor>
 
 Faster: Sonnet · low (lighter on your limits, may miss subtle issues)
-More careful: Opus · high (slower, uses more of your limit)
+More careful: Opus · medium (slower, uses more of your limit)
 
 Set it: pick the model in the selector; extended thinking off for low, on for medium and above.
 ```
