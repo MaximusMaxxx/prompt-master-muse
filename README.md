@@ -4,7 +4,7 @@
 
 <h1 align="center">Prompt Master</h1>
 
-<p align="center"><b>Turn a rough prompt into a clear one, and get a model and effort recommendation.</b><br>One skill, two editions: Claude, and ChatGPT/Codex.</p>
+<p align="center"><b>Turn a rough prompt into a clear one, and get a model and effort recommendation.</b><br>One skill, three editions: Claude, ChatGPT/Codex, and Muse. The Muse edition gives a difficulty and approach note instead, because Muse has no model selector.</p>
 
 <p align="center">
   <a href="LICENSE"><img src="assets/badge-license.svg" alt="MIT license" width="186" height="32"></a>
@@ -25,6 +25,7 @@ The two editions have the same commands. Download the one you use, or both.
 | Claude chat and Claude Code | Add it from the Claude directory, or download [`prompt-master-claude.zip`](claude/prompt-master-claude.zip) and upload it in **Settings → Skills**. Claude Code gets either automatically, or install it from the [terminal](docs/terminal-install.md) | [Install](#install-claude-and-claude-code) · [Claude Code](#using-claude-code) |
 | ChatGPT and ChatGPT Work | Download [`prompt-master-chatgpt.zip`](chatgpt/prompt-master-chatgpt.zip) and upload it in **Skills → Create** | [Install](#install-chatgpt-and-chatgpt-work) |
 | Codex | Run `$skill-installer`, or [link the repo](docs/terminal-install.md) to stay up to date | [Install](#install-codex) |
+| Muse | Add the `muse/prompt-master` folder as a skill in Muse | [Muse edition](#muse-edition) |
 
 Commands on this page are for Mac and Linux. Windows (PowerShell) versions are in [Terminal install](docs/terminal-install.md).
 
@@ -113,6 +114,20 @@ $skill-installer install https://github.com/nishkarsh-shah/prompt-master/tree/ma
 ```
 
 This puts the skill in `~/.agents/skills/prompt-master`. Restart Codex if `pm help` doesn't respond. To update, delete that folder and run the install command again.
+
+Installed? Try the [commands](#commands) next, or type `pm help`.
+
+<br>
+
+## Muse edition
+
+### Install (Muse)
+
+Add the `muse/prompt-master` folder as a skill in Muse, following Muse's skill setup for this workspace. The `SKILL.md` in that folder is the whole skill; there is no zip and no agent config file.
+
+### What changes
+
+The commands, presets, and rewriting are the same as the ChatGPT edition. The difference: Muse has no model or effort selector, so `ep:` and `pm pick:` give a difficulty and approach note instead of a model recommendation. Follow-ups are plain-text commands, not buttons. See the [Muse edition README](muse/prompt-master/README.md).
 
 Installed? Try the [commands](#commands) next, or type `pm help`.
 
