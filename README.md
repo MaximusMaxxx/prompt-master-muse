@@ -107,7 +107,7 @@ Installed? Try the [commands](#commands) next, or type `pm help`.
 
 ## Models it recommends
 
-The picker scores how hard, broad, risky and vague the task is. It only recommends the top models or max effort when the score earns it. Each chip shows the score range for that model.
+The picker scores how hard, broad, risky and vague the task is. It only recommends the top models or max effort when the score earns it. Each bar shows the score range for that model.
 
 <img src="assets/ladder.svg" alt="Model ladder: harder tasks get a stronger model. The same list is in the table below." width="100%" height="512">
 
