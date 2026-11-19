@@ -39,7 +39,7 @@ The ChatGPT edition this was ported from is at `../chatgpt/prompt-master/SKILL.m
 
 ## Credits
 
-Original Prompt Master by Nishkarsh Shah (MIT). Muse edition ported by MaximusMaxxx in a fork, at the author's invitation: the ChatGPT edition as the starting point, separate folder, MIT licensed.
+Original Prompt Master by [Nishkarsh Shah](https://github.com/nishkarsh-shah/prompt-master) (MIT). Muse edition ported by MaximusMaxxx in a fork, with the author's permission under MIT license: the ChatGPT edition as the starting point, separate folder, MIT licensed.
 
 ## License
 
