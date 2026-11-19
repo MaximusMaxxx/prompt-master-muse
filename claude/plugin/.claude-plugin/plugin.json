@@ -1,7 +1,7 @@
 {
   "name": "prompt-master",
-  "version": "1.0.1",
-  "description": "Rewrites rough prompts into clear ones and recommends which model and effort level to use for a task.",
+  "version": "1.0.2",
+  "description": "Rough prompt in, clear prompt out, plus the right model and effort level to run it. Presets for code, email, study and research.",
   "author": {
     "name": "Nishkarsh Shah"
   },
