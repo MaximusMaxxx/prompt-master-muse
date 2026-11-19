@@ -38,7 +38,7 @@ Then it answers that clearer prompt. Details you didn't give become `[placeholde
 
 The picker scores how hard, broad, risky and vague the task is, and only recommends the top models when the score earns them. Each bar shows the score range for that model.
 
-![Model ladder for Claude, from Haiku low for simple tasks up to Opus max for the hardest ones](images/ladder.svg)
+![Model ladder for Claude, from Haiku low for simple tasks up to Opus max for the hardest ones](images/ladder.png)
 
 ## What it contains
 
