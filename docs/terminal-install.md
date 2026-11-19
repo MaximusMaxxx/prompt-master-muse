@@ -6,7 +6,7 @@ For installing from the terminal instead of uploading a zip. Jump to [Claude Cod
 
 ## Claude Code
 
-An upload in Claude chat may not sync to an API-key login. Use one of these routes instead.
+A plugin or upload from Claude chat only syncs to Claude Code when you sign in with a Claude account, not with an API key or a cloud provider login. Use one of these routes instead.
 
 **Stay up to date with the repo** (Mac or Linux, needs git). Clone once and link the skill folder:
 

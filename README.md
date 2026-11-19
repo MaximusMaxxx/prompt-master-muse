@@ -22,7 +22,7 @@ The two editions have the same commands. Download the one you use, or both.
 
 | You use | Do this | Details |
 | --- | --- | --- |
-| Claude chat and Claude Code | Download [`prompt-master-claude.zip`](claude/prompt-master-claude.zip) and upload it in **Settings → Skills**. Claude Code gets it automatically, or install it from the [terminal](docs/terminal-install.md) | [Install](#install-claude-and-claude-code) |
+| Claude chat and Claude Code | Add it from the Claude directory, or download [`prompt-master-claude.zip`](claude/prompt-master-claude.zip) and upload it in **Settings → Skills**. Claude Code gets either automatically, or install it from the [terminal](docs/terminal-install.md) | [Install](#install-claude-and-claude-code) · [Claude Code](#using-claude-code) |
 | ChatGPT and ChatGPT Work | Download [`prompt-master-chatgpt.zip`](chatgpt/prompt-master-chatgpt.zip) and upload it in **Skills → Create** | [Install](#install-chatgpt-and-chatgpt-work) |
 | Codex | Run `$skill-installer`, or [link the repo](docs/terminal-install.md) to stay up to date | [Install](#install-codex) |
 
@@ -68,15 +68,28 @@ Typing is case-insensitive. If key details are missing (numbers, an attached fil
 
 ### Install (Claude and Claude Code)
 
-Works on the web, desktop and mobile apps.
+> [!WARNING]
+> **Only choose one option.** Installing both shows Prompt Master twice.
+
+**Option 1: add it from the Claude directory**
+
+1. In Claude on the web or the desktop app, open **Customize** in the left sidebar, then **Plugins**, then **Discover**.
+2. Search for **Prompt Master**, open it, check that the author is **Nishkarsh Shah**, and click **Add**.
+
+On Team and Enterprise plans, an owner may need to allow plugins first.
+
+**Option 2: upload the zip** (web, desktop and mobile apps)
 
 1. Download [`prompt-master-claude.zip`](claude/prompt-master-claude.zip): open the file on GitHub and click the download button.
 2. In Claude, open **Settings → Capabilities** and turn on **Code execution and file creation**. On Team and Enterprise plans, an admin may need to allow skills first.
 3. Under **Skills**, choose **Upload skill**, pick the zip, and make sure its toggle is on.
 
-If you sign in to Claude Code with the same Claude account, the skill you uploaded appears there automatically, in the desktop app and in the terminal. You can also run it as `/prompt-master`.
+### Using Claude Code
 
-For clickable buttons after a `pm:` rewrite, turn on visuals or interactive content in the same settings.
+- **Signed in with the same Claude account:** Prompt Master appears there automatically, in the desktop app and in the terminal. A zip upload also runs as `/prompt-master`.
+- **Using an API key, or want it without Claude chat:** use the [terminal install](docs/terminal-install.md).
+
+> For clickable buttons after a `pm:` rewrite, turn on visuals or interactive content in the same settings.
 
 Installed? Try the [commands](#commands) next, or type `pm help`.
 
@@ -107,7 +120,7 @@ Installed? Try the [commands](#commands) next, or type `pm help`.
 
 ## Models it recommends
 
-The picker scores how hard, broad, risky and vague the task is. It only recommends the top models or max effort when the score earns it. Each bar shows the score range for that model.
+The picker scores how hard, broad, risky and vague the task is. It only recommends the top models or max effort when the score earns it. Each bar shows the score range for that model. The picker is a rule of thumb, not a tested algorithm, and each column is its own ladder: rows show similar difficulty, not equal models.
 
 <img src="assets/ladder.svg" alt="Model ladder: harder tasks get a stronger model. The same list is in the table below." width="100%" height="512">
 
@@ -134,11 +147,11 @@ The picker scores how hard, broad, risky and vague the task is. It only recommen
 
 | Topic | What to know |
 | --- | --- |
-| **Updating** | An uploaded skill doesn't pull changes from GitHub. Download the new zip and upload it again. Terminal installs update with the command on the [terminal install page](docs/terminal-install.md). |
+| **Updating** | An uploaded skill doesn't pull changes from GitHub. Download the new zip and upload it again. Directory installs update when a new version is published. Terminal installs update with the command on the [terminal install page](docs/terminal-install.md). |
 | **Buttons** | After a `pm:` answer you get **Rewrite again**, **Why?** and **Undo**. In Claude, some versions only fill the message box when you click, so press Enter to send. ChatGPT shows them where the app supports native action buttons. Where there are none, such as the Claude Code terminal or Codex, type `pm again`, `pm why` or `pm undo`. |
 | **Advice only** | The skill never switches models or starts subagents for you. `ep claude:` and `ep codex:` only suggest a plan. Pick the model yourself, and in Claude use the extended thinking toggle for medium effort and above. |
 | **Your plan** | On a Free plan it never recommends a paid-only model. The Claude edition is tuned for Pro and Max, and on pay-per-token API it leans cheaper when the stakes are low. |
-| **Privacy** | Prompt Master doesn't collect, store or send any data. Passwords, API keys and card or ID numbers in a draft are replaced with `[redacted]` in the rewrite. See the [privacy policy](claude/plugin/PRIVACY.md). |
+| **Privacy** | Prompt Master doesn't collect, store or send any data. The skill is told to replace passwords, API keys and card or ID numbers with `[redacted]` in the rewrite, but don't paste real secrets: the AI provider has already received your text. See the [privacy policy](claude/plugin/PRIVACY.md). |
 | **Language** | The rewrite uses the same language as your draft. |
 
 Want to change what it recommends, or add a preset? See [Customize](docs/customize.md).
